@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block styles %} 
+<link rel="stylesheet" href="{{ url_for("static", filename = "css/sections/ejemplos-de-codigo.css") }}">
+{% endblock %}
+
+{% block title %} {{ topic }} - ejemplos {% endblock %}
+
+{% block content %}
+<div class="container" data-topic="{{ topic }}">
+    {% if logged %}
+   <button type="button" class="add-example-button" id="add-example">Subir Ejemplo</button>
+    {% else %}
+   <button type="button" class="add-example-button" id="add-example-no-logged" onclick="window.location.href=`{{url_for('auth_client.login_page')}}`">Subir Ejemplo</button>
+    {% endif %}
+
+    <div class="example-container">
+
+      {% for example in examples %}
+      <div class="example" onclick="window.location.href=`{{ url_for('other.section_specific_content', topic=example.tema, section='ejemplos-de-codigo', id=example.ejemplo_Id) }}`">
+          <h4 class="example-title">{{ example.titulo }}</h4>
+          <p class="example-user">Usuario: {{ example.author }}</p>
+          <p class="example-date">Fecha: {{ example.created_at.strftime('%Y-%m-%d') }}</p>
+       </div>
+      {% endfor %}
+    </div>
+</div>
+
+
+<div class="upload-example-container">
+    <i class="fa-solid fa-x close-icon"></i>
+    <form class="upload-example">
+        <div class="input-container">
+            <label for="titulo">Título</label>
+            <input type="text" name="titulo" id="titulo" value="" data-titulo="">
+        </div>
+        <div class="input-container">
+            <label for="descripcion">Descripción</label>
+            <textarea name="descripcion" class="descripcion" id="descripcion"></textarea>
+        </div>
+        <div class="input-container">
+            <label for="codigo">Código</label>
+             <textarea name="codigo" id="codigo"></textarea>
+          </div>
+        <div class="input-container">
+            <button type="submit" class="save-changes">Subir ejemplo</button>
+        </div>
+    </form>
+ </div>
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="{{ url_for("static", filename = "js/sections/ejemplos-de-codigo.js") }}"></script>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block styles %} 
+<link rel="stylesheet" href="{{ url_for("static", filename = "css/content/material.css") }}">
+{% endblock %}
+
+{% block title %} {{ material.titulo }} {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="material" data-material="{{ material.id }}">
+        <div class="options">
+            <button type="button" id="editar">Editar</button>
+            <button type="button" id="eliminar">Eliminar</button>
+        </div>
+        <div class="material-created">
+            <p class="author">{{ material.usuario }}</p>
+            <p class="date">{{ material.fecha }}</p>
+        </div>
+        <h4>{{ material.titulo }}</h4>
+        <p class="descripcion">{{ material.descripcion }}</p>
+    </div>
+</div>
+<div class="upload-material-container">
+    <i class="fa-solid fa-x close-icon"></i>
+    <form class="upload-material" enctype="multipart/form-data">
+        <div class="input-container">
+            <label for="titulo">Título</label>
+            <input type="text" name="titulo" id="titulo" value="{{ material.titulo }}" data-titulo="{{ material.titulo }}">
+        </div>
+        <div class="input-container">
+            <label for="descripcion">Descripción</label>
+            <textarea name="descripcion" class="descripcion" id="descripcion" data-descripcion="{{ material.descripcion }}">{{ material.descripcion }}</textarea>
+        </div>
+        <div class="input-container">
+            <label for="tipo">Tipo</label>
+            <select name="tipo" id="tipo">
+                <option disabled selected>---</option>
+                <option value="link">Link</option>
+                <option value="archivo">Archivo</option>
+            </select>
+        </div>
+        <div class="input-container material-file">
+
+        </div>
+        <div class="input-container">
+            <button type="submit" class="save-changes">Actualizar material</button>
+        </div>
+    </form>
+ </div>
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="{{ url_for("static", filename = "js/content/material.js") }}"></script>
+{% endblock %}

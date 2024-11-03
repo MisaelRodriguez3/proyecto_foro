@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for("static", filename = "css/search.css") }}">
+{% endblock %}
+
+{% block title %} Search {% endblock %}
+
+
+{% block content %}
+<div class="container">
+    
+    <div class="activity-container">
+        <!-- Hacer dinamico-->
+        {% if results.posts or results.ejemplos or results.retos %}
+        {% if results.posts %}
+        <h3 class="activity-title">Publicaciones:</h3>
+        {% for post in results.posts %}
+        <div class="post" onclick="window.location.href=`{{ url_for('other.section_specific_content', topic=post.tema, section='foro', id=post.post_Id) }}`">
+            <h4 class="title-post">{{ post.titulo }}</h4>
+            <p class="technology-post">Tecnología: {{ post.tema }}</p>
+            <p class="channel-post">Usuario: {{ post.author }}</p>
+         </div>
+        {% endfor %}
+        {% endif %}
+         <br>
+        {% if results.ejemplos %}
+        <h3 class="activity-title">Ejemplos:</h3>
+        {% for ejemplo in results.ejemplos %}
+        <div class="ejemplos" onclick="window.location.href=`{{ url_for('other.section_specific_content', topic=ejemplo.tema, section='ejemplos-de-codigo', id=ejemplo.ejemplo_Id) }}`">
+            <h4 class="title-ejemplos">{{ ejemplo.titulo }}</h4>
+            <p class="technology-ejemplos">Tecnología: {{ ejemplo.tema }}</p>
+            <p class="channel-ejemplos">Usuario: {{ ejemplo.author }}</p>
+         </div>
+        {% endfor %}
+        {% endif %}
+        <br>
+        {% if results.retos %}
+        <h3 class="activity-title">Retos:</h3>
+        {% for reto in results.retos %}
+        <div class="retos" onclick="window.location.href=`{{ url_for('other.section_specific_content', topic=reto.tema, section='retos', id=reto.reto_Id) }}`">
+            <h4 class="title-retos">{{ reto.titulo }}</h4>
+            <p class="technology-retos">Tecnología: {{ reto.tema }}</p>
+            <p class="channel-retos">Usuario: {{ reto.author }}</p>
+         </div>
+        {% endfor %}
+        {% endif %}
+        {% else %}
+        <h3 class="activity-title">No hay resultados</h3>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="{{ url_for("static", filename = "js/search.js") }}"></script>
+{% endblock %}

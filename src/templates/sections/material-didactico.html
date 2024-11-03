@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block styles %} 
+<link rel="stylesheet" href="{{ url_for("static", filename = "css/sections/material-didactico.css") }}">
+{% endblock %}
+
+{% block title %} {{ topic }} - material {% endblock %}
+
+{% block content %}
+<div class="container" data-topic="{{ topic }}">
+    {% if logged %}
+   <button type="button" class="add-material-button" id="add-material">Añadir Material</button>
+    {%else %}
+   <button type="button" class="add-material-button" id="add-material-no-logged" onclick="window.location.href=`{{url_for('auth_client.login_page')}}`">Añadir Material</button>
+    {% endif %}
+   <div class="material-container">
+      {% for material in materials %}
+       <div class="material" onclick="window.location.href=`{{ url_for('other.section_specific_content', topic=material.tecnologia, section='material-didactico', id=material.id) }}`">
+          <h4 class="material-title">{{ material.titulo }}</h4>
+          <p class="material-user">Usuario: {{ material.usuario }}</p>
+          <p class="material-date">Fecha: {{ material.fecha }}</p>
+       </div>
+      {% endfor %}
+   </div>
+</div>
+
+<div class="upload-material-container">
+    <i class="fa-solid fa-x close-icon"></i>
+    <form class="upload-material" enctype="multipart/form-data">
+        <div class="input-container">
+            <label for="titulo">Título</label>
+            <input type="text" name="titulo" id="titulo" value="" data-titulo="">
+        </div>
+        <div class="input-container">
+            <label for="descripcion">Descripción</label>
+            <textarea name="descripcion" class="descripcion" id="descripcion"></textarea>
+        </div>
+        <div class="input-container">
+            <label for="tipo">Tipo</label>
+            <select name="tipo" id="tipo">
+                <option disabled selected>---</option>
+                <option value="link">Link</option>
+                <option value="archivo">Archivo</option>
+            </select>
+        </div>
+        <div class="input-container material-file">
+
+        </div>
+        <div class="input-container">
+            <button type="submit" class="save-changes">Subir material</button>
+        </div>
+    </form>
+ </div>
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="{{ url_for("static", filename = "js/sections/material-didactico.js") }}"></script>
+{% endblock %}

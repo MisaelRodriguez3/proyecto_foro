@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for("static", filename = "css/home.css") }}">
+{% endblock %}
+
+{% block title %} Home {% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <h3 class="activity-title">Actividad reciente:</h3>
+
+    <div class="activity-container">
+        <!-- Hacer dinamico-->
+
+        {% for post in posts %}
+        <div class="post" onclick="window.location.href=`{{ url_for('other.section_specific_content', topic=post.tema, section='foro', id=post.post_Id) }}`">
+            <h4 class="title-post">{{ post.titulo }}</h4>
+            <p class="technology-post">Tecnología: {{ post.tema }}</p>
+            <p class="channel-post">Usuario: {{ post.author }}</p>
+         </div>
+        {% endfor %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="{{ url_for("static", filename = "js/home.js") }}"></script>
+{% endblock %}

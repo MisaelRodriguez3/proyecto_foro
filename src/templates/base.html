@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for("static", filename = "css/base.css") }}">
+    <link rel="shortcut icon" href="{{ url_for("static", filename = "assets/logo.webp") }}" type="image/x-icon">
+    {% block styles %}{% endblock %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1 class="sitename"><a href="/">Technology Nest</a></h1>
+        <div class="search-container">
+            <form class="search-form" id="search-form">
+                <input type="text" name="search" id="search" placeholder="Buscar...">
+                <i class="fa-solid fa-magnifying-glass search-icon" id="search-icon"></i>
+            </form>
+        </div>
+        <nav class="menu-container">
+            {% if logged %}
+            <ul class="menu">
+                <li class="menu-item"><a href="/profile" class="icon-link"><i class="fa-solid fa-user menu-icon"></i></a></li>
+                <li class="menu-item"><i class="fa-solid fa-right-from-bracket menu-icon logout"></i></li>
+            </ul>
+            {% else %}
+                <ul class="menu">
+                    <li class="menu-item"><a href="/login" class="login-link">Log in</a></li>
+                    <li class="menu-item"><a href="/register" class="register-link">Sign up</a></li>
+                </ul>
+            {% endif %}
+        </nav>
+    </header>
+
+    {% if showSideBar %}
+    <aside class="sidebar">
+        <div class="topic-list">
+            {% for topic in topics %}
+                <div class="topic {% if request.view_args.topic == topic.tema %}active{% endif %}">
+                    <a href="{{ url_for('other.section_page', topic=topic.tema, section='foro') }}" class="topic-link" data-topic="{{ topic.tema }}">
+                        <img src="{{ topic.imagen_url }}" alt="{{ topic.tema }}" class="topic-image">
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    
+        <div class="section">
+            <ul class="section-list">
+                {% set topic = topic if topic else topics[0].tema %}
+                <li class="section-item" href="{{ url_for('other.section_page', topic=topic, section='foro') }}">
+                    <a href="{{ url_for('other.section_page', topic=topic, section='foro') }}" data-section="foro">Foro</a>
+                </li>
+                <!--<li class="section-item">
+                    <a href="{{ url_for('other.section_page', topic=topic, section='material-didactico') }}" data-section="material-didactico">Material didáctico</a>
+                </li> -->
+                <li class="section-item">
+                    <a href="{{ url_for('other.section_page', topic=topic, section='retos') }}" data-section="retos">Retos</a>
+                </li>
+                <li class="section-item">
+                    <a href="{{ url_for('other.section_page', topic=topic, section='ejemplos-de-codigo') }}" data-section="ejemplos-de-codigo">Ejemplos de código</a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    {% endif %}
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Technology Nest. Todos los derechos reservados.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script type="module" src="{{ url_for("static", filename = "js/base.js") }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

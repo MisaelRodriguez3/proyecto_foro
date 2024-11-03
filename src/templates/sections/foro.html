@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block styles %} 
+<link rel="stylesheet" href="{{ url_for("static", filename = "css/sections/foro.css") }}">
+{% endblock %}
+
+{% block title %} {{ topic }} - foro {% endblock %}
+
+{% block content %}
+<div class="container" data-topic="{{ topic }}">
+    {% if logged %}
+    <button type="button" class="ask-question-button" id="ask-question">Realizar pregunta</button>
+    {% else %}
+    <button type="button" class="ask-question-button" id="ask-question-no-logged" onclick="window.location.href=`{{url_for('auth_client.login_page')}}`">Realizar pregunta</button>
+    {% endif %}
+    <div class="posts-container">
+
+      {% for post in posts %}
+      <div class="post" onclick="window.location.href=`{{ url_for('other.section_specific_content', topic=post.tema, section='foro', id=post.post_Id) }}`">
+         <h4 class="post-title">{{ post.titulo}}</h4>
+         <p class="post-user">Usuario: {{ post.author }}</p>
+         <p class="post-date">Fecha: {{ post.created_at.strftime('%Y-%m-%d') }}</p>
+      </div>
+      {% endfor %}
+    </div>
+</div>
+
+<div class="ask-question-container">
+   <i class="fa-solid fa-x close-icon"></i>
+   <form class="ask-question">
+       <div class="input-container">
+           <label for="titulo">Título</label>
+           <input type="text" name="titulo" id="titulo" value="" data-titulo="">
+       </div>
+       <div class="input-container">
+           <label for="descripcion">Descripción</label>
+           <textarea name="descripcion" class="descripcion" id="descripcion"></textarea>
+       </div>
+       <div class="input-container">
+           <label for="codigo">Código (opcional)</label>
+            <textarea name="codigo" id="codigo"></textarea>
+         </div>
+       <div class="input-container">
+           <button type="submit" class="save-changes">Subir pregunta</button>
+       </div>
+   </form>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="{{ url_for("static", filename = "js/sections/foro.js") }}"></script>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for("static", filename = "css/profile.css") }}">
+{% endblock %}
+
+{% block title %} Profile {% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="profile" data-id="{{ user.usuario_Id }}">
+        <div class="profile-info">
+            <div class="img-container">
+                <img src="{{ user.imagen_url }}" alt="foto-perfil-{{ user.usuario }}" class="profile-img">
+            </div>
+            <div class="profile-text">
+                <!-- Hacer dinamico-->
+                <h2>{{ user.nombre }}</h2>
+                <h3>{{ user.usuario }}</h3>
+            </div>
+        </div>
+        <button type="button" class="edit-profile" id="edit-profile">Editar perfil</button>
+    </div>
+    <div class="profile-activity">
+        <h3 class="activity-title">Publicaciones recientes:</h3>
+        {% if posts %}
+        {% for post in posts %}
+        <!-- Hacer dinamico-->
+        <div class="user-post">
+            <h4 class="title-post">{{ post.titulo }}</h4>
+            <p class="technology-post">Tecnología: {{ post.tecnologia }}</p>
+            <p class="channel-post">Fecha: {{ post.fecha }}</p>
+         </div>
+         {% endfor %}
+         {% else %}
+         <div class="no-posts">
+            <h5>No hay publicaciones</h5>
+         </div>
+         {% endif %}
+    </div>
+</div>
+
+
+<!-- formulario-->
+
+<div class="edit-profile-form-container">
+    <i class="fa-solid fa-x close-icon"></i>
+    <form action="" class="edit-profile-form" enctype="multipart/form-data">
+        <div class="input-container edit-image-container">
+            <img src="{{ user.imagen_url }}" alt="fotoperfil-{{ user.usuario }}" class="profile-img-edit-form">
+            <i class="fa-solid fa-pencil edit-image"></i>
+        </div>
+        <div class="input-container image-input">
+            <label for="imagen_url">Url de la imagen</label>
+            <input type="text" name="avatar" id="avatar" class="input-file" value="{{ user.imagen_url }}" data-img="{{ user.imagen_url }}">
+        </div>
+        <div class="input-container">
+            <label for="usuario">Usuario</label>
+            <input type="text" name="usuario" id="usuario" value="{{ user.usuario }}" data-usuario="{{ user.usuario }}">
+        </div>
+        <div class="input-container">
+            <label for="email">Correo</label>
+            <input type="email" name="correo" id="correo" value="{{ user.correo }}" data-correo="{{ user.correo }}">
+        </div>
+        <div class="input-container">
+            <label for="contraseña">Contraseña</label>
+            <input type="password" name="contrasena" id="contrasena">
+        </div>
+        <div class="input-container">
+            <button type="submit" class="save-changes">Guardar cambios</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="{{ url_for("static", filename = "js/profile.js") }}"></script>
+{% endblock %}

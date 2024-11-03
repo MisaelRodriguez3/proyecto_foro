@@ -1,0 +1,64 @@
+.container {
+    width: 75%;
+    height: 70%;
+    margin: 0;
+    position: absolute;
+    right: 3%;
+    top: 12%;
+}
+
+.activity-title {
+    color: #fff;
+    font-family: "Inter", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.activity-container {
+    height: 100%;
+    padding: 5px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.post, .ejemplos, .retos {
+    width: 100%;
+    border: 1px solid #B9BBBE;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.post:hover, .ejemplos:hover, .retos:hover {
+    transform: scale(1.001);
+    background-color: #3c4146;
+}
+
+.title-post, .title-ejemplos, .title-retos {
+    color: #fff;
+    font-family: "Inter", sans-serif;
+    text-align: center;
+}
+
+.technology-post, .channel-post, .technology-ejemplos, .technology-retos, .channel-ejemplos, .channel-retos {
+    color: #B9BBBE;
+    font-family: "Roboto", sans-serif;
+    padding: 0 10px;
+}
+
+@media (min-width: 768px) {
+    .container {
+        top: 15%;
+        height: 65%;
+    }
+
+    .activity-container {
+        width: 100%;
+    }
+}
+
+@media (min-width: 400px) and (max-width: 767px) {
+    .container {
+        width: 85%;
+    }
+}

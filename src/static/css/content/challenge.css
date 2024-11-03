@@ -1,0 +1,169 @@
+.container {
+    width: 75%;
+    height: 70%;
+    margin: 0;
+    position: absolute;
+    right: 3%;
+    top: 12%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.challenge {
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    margin-bottom: 15px;
+    padding: 0;
+}
+
+.options {
+    display: flex;
+    justify-content: flex-end;
+    
+}
+
+.options > button {
+    padding: 5px;
+    margin: 5px;
+    width: 70px;
+    height: 30px;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+#editar {
+    background-color: #4852c5;
+}
+
+#editar:hover {
+    background-color: #31388f;
+}
+
+#eliminar {
+    background-color: #d34248;
+}
+
+#eliminar:hover {
+    background-color: #be181e;
+}
+
+.challenge-created {
+    color: #B9BBBE;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.author, .date {
+    margin-right: 20px;
+}
+
+.challenge > h4 {
+    font-family: "Inter", sans-serif;
+}
+
+.challenge > p {
+    font-family: "Roboto", sans-serif;
+}
+
+.launch-challenge-container {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    max-height: 90vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #F5F5F5;
+    margin: 0;
+    padding: 0;
+    border-radius: 5px;
+    font-family: "Roboto", sans-serif;
+    display: none;
+    overflow: auto;
+    z-index: 20;
+}
+
+.launch-challenge-container.active {
+    display: block;
+}
+
+.close-icon {
+    position: absolute;
+    right: 2%;
+    top: 2%;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.launch-challenge {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 20;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 70%;
+}
+
+.input-container > label {
+    margin-bottom: 5px;
+}
+
+.input-container > input, select, textarea {
+    height: 30px;
+    border: 1px solid #6d6d6d;
+    border-radius: 5px;
+}
+
+textarea {
+    max-width: 100%;
+}
+
+.save-changes {
+    margin: 10px 0;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    color: #F5F5F5;
+    background-color: #969deb;
+    cursor: none;
+    pointer-events: none;
+}
+
+.save-changes.active {
+    cursor: pointer;
+    background-color: #4852c5;
+    pointer-events: auto;
+}
+
+.save-changes.active:hover {
+    background-color: #31388f;
+}
+
+.deshabilitado {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+@media (min-width: 768px) {
+    .container {
+        top: 15%;
+        height: 70%;
+    }
+}
+
+@media (min-width: 400px) and (max-width: 767px) {
+    .container {
+        width: 85%;
+    }
+}

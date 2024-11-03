@@ -1,0 +1,223 @@
+.container {
+    width: 75%;
+    height: 70%;
+    margin: 0;
+    position: absolute;
+    right: 3%;
+    top: 12%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.post {
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    margin-bottom: 15px;
+    padding: 0;
+}
+
+.options, .comment-options {
+    display: flex;
+    justify-content: flex-end;
+    
+}
+
+.options > button, .comment-options > button {
+    padding: 5px;
+    margin: 5px;
+    width: 70px;
+    height: 30px;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+#editar, #editar-comment {
+    background-color: #4852c5;
+}
+
+#editar:hover, #editar-comment:hover {
+    background-color: #31388f;
+}
+
+#eliminar, #eliminar-comment {
+    background-color: #d34248;
+}
+
+#eliminar:hover, #eliminar-comment:hover {
+    background-color: #be181e;
+}
+
+.post-created {
+    color: #B9BBBE;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.author {
+    margin-right: 20px;
+}
+
+.post > h4 {
+    font-family: "Inter", sans-serif;
+}
+
+.post > p {
+    font-family: "Roboto", sans-serif;
+}
+
+.codigo {
+    width: 95%;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.button-container {
+    width: 95%;
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px;
+}
+
+.comment-button {
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.comment-button:hover {
+    transform: scale(1.1);
+}
+
+.comments-container {
+    width: 95%;
+    color: #B9BBBE;
+    margin: 0;
+    padding: 0;
+    border-top: 2px solid #000;
+}
+
+h5, .usuario {
+    color: #fff;
+}
+
+.comment {
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #42464b;
+    padding: 5px;
+}
+
+h6 {
+    text-align: center;
+    font-size: large;
+}
+
+.ask-question-container, .comment-form-container, .edit-comment-form-container {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    max-height: 90vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #F5F5F5;
+    margin: 0;
+    padding: 0;
+    border-radius: 5px;
+    font-family: "Roboto", sans-serif;
+    display: none;
+    overflow: auto;
+    z-index: 20;
+}
+
+.ask-question-container.active, .comment-form-container.active, .edit-comment-form-container.active {
+    display: block;
+}
+
+.close-icon, .close-icon-comment, .close-icon-edit-comment {
+    position: absolute;
+    right: 2%;
+    top: 2%;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.ask-question, .comment-form, .edit-comment-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 20;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 70%;
+}
+
+.input-container > label {
+    margin-bottom: 5px;
+}
+
+.input-container > input, textarea {
+    height: 30px;
+    border: 1px solid #6d6d6d;
+    border-radius: 5px;
+}
+
+textarea {
+    max-width: 100%;
+}
+
+.save-changes, .save-comment, .save-edit-comment {
+    margin: 10px 0;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    color: #F5F5F5;
+    background-color: #969deb;
+    cursor: none;
+    pointer-events: none;
+}
+
+.save-changes.active, .save-comment.active, .save-edit-comment.active {
+    cursor: pointer;
+    background-color: #4852c5;
+    pointer-events: auto;
+}
+
+.save-changes.active:hover, .save-comment.active {
+    background-color: #31388f;
+}
+
+.deshabilitado {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+@media (min-width: 768px) {
+    .container {
+        top: 15%;
+        height: 70%;
+    }
+
+    .codigo {
+        width: 96%;
+    }
+}
+
+@media (min-width: 400px) and (max-width: 767px) {
+    .container {
+        width: 85%;
+    }
+}
