@@ -26,7 +26,7 @@ export function changeInFields(initialValues, finallyValues) {
         const obj2 = finallyValues[i];
 
         for(const key in obj1) {
-            if(obj1[key] !== obj2[key] && !no_data.includes(obj1[key]) && !no_data.includes(obj2[key])) {
+            if(obj1[key] !== obj2[key] && !no_data.includes(obj2[key])) {
                 data.push(obj2)
             }
         }

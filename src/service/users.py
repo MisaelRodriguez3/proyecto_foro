@@ -25,6 +25,9 @@ def updateUser(id, data):
         if not user:
             return None
         for field, value in data.items():
+            if field == "password":
+                password = generate_password_hash(value)
+                value = password
             if hasattr(user, field) and field != "id":
                 setattr(user, field, value)
         db.session.commit()
