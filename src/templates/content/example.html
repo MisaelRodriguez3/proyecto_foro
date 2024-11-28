@@ -16,8 +16,8 @@
         </div>
         {% endif %}
         <div class="example-created">
-            <p class="author">{{ example.author }}</p>
-            <p class="date">{{ example.created_at.strftime('%Y-%m-%d') }}</p>
+            <p class="author">Autor: {{ example.author }}</p>
+            <p class="date">Fecha: {{ example.created_at.strftime('%Y-%m-%d') }}</p>
         </div>
         <h4>{{ example.titulo }}</h4>
         <p class="descripcion">{{ example.descripcion }}</p>

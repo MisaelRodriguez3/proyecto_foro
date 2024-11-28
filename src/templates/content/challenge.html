@@ -16,9 +16,9 @@
         </div>
         {% endif %}
         <div class="challenge-created">
-            <p class="author">{{ challenge.author }}</p>
-            <p class="date">{{ challenge.created_at.strftime('%Y-%m-%d') }}</p>
-            <p class="difficult">{{ challenge.dificultad }}</p>
+            <p class="author">Autor: {{ challenge.author }}</p>
+            <p class="date">Fecha: {{ challenge.created_at.strftime('%Y-%m-%d') }}</p>
+            <p class="difficult">Dificultad: {{ challenge.dificultad }}</p>
         </div>
         <h4>{{ challenge.titulo }}</h4>
         <p class="descripcion">{{ challenge.descripcion }}</p>

@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request
 from flask_login import current_user
 from src.service import getTopics, getAllPosts, getAllPostByTopic, getAllChallengesByTopic, getAllExamplesByTopic, getAllMaterialsByTopic, getPost, getMaterial, getChallenge, getExample, getCommentsByPost, searchContent
+from src.utils.format_responses import format_responses
 
 other = Blueprint("other", __name__)
 
@@ -194,7 +195,8 @@ def section_specific_content(topic, section, id):
     if (section in sections):
       if (section == "foro"):
           post = getPost(id)
-          responses = getCommentsByPost(id)
+          _responses = getCommentsByPost(id)
+          responses = format_responses(_responses)
           is_author = current_user.is_authenticated and (current_user.usuario_Id == post.usuario_Id)
           return render_template("/content/post.html", showSideBar=True, topics=getTopics(), post=post, logged=current_user.is_authenticated, is_author=is_author, responses=responses)
       elif (section == "retos"):

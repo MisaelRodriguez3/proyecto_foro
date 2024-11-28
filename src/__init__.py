@@ -3,6 +3,7 @@ from .routes import register_routes
 from .models import db
 from .utils import login_manager
 from flask_migrate import Migrate
+from. seeders import insertInitalData
 
 app = Flask(__name__)
 
@@ -20,4 +21,6 @@ def run_server(config):
     #Crear tablas
     with app.app_context():
         db.create_all()
+        insertInitalData()
+
     return app

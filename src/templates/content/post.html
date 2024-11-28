@@ -16,8 +16,8 @@
         </div>
         {% endif %}
         <div class="post-created">
-            <p class="author">{{ post.author }}</p>
-            <p class="date">{{ post.created_at.strftime('%Y-%m-%d') }}</p>
+            <p class="author">Autor: {{ post.author }}</p>
+            <p class="date">Fecha: {{ post.created_at.strftime('%Y-%m-%d') }}</p>
         </div>
         <h4>{{ post.titulo }}</h4>
         <p class="descripcion">{{ post.descripcion }}</p>
@@ -43,11 +43,11 @@
         {% if responses %}
         {% for response in responses %}
         <div class="comment">
-            <p class="usuario">{{ response.usuario }}</p>
-            <p class="comment-text">{{ response.comentario }}</p>
+            <p class="usuario">{{ response.author }}</p>
+            <p class="comment-text">{{ response.comentario|safe }}</p>
             {% if logged and current_user.usuario_Id == response.usuario_Id %}
             <div class="comment-options">
-                <button type="button" id="editar-comment" data-id="{{response.comentario_Id}}" data-value="{{response.comentario}}">Editar</button>
+                <button type="button" id="editar-comment" data-id="{{response.comentario_Id}}" data-value="{{response.comment}}">Editar</button>
                 <button type="button" id="eliminar-comment" data-id="{{response.comentario_Id}}">Eliminar</button>
             </div>
             {% endif %}
