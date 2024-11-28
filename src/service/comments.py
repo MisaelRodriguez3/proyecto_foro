@@ -46,7 +46,7 @@ def deleteComment(id):
             return None
         db.session.delete(comment)
         db.session.commit()
-        return f"Comentario {comment.comenatario_id} eliminado."
+        return f"Comentario {comment.comentario_Id} eliminado."
     except Exception as e:
         db.session.rollback()
         print("Error: ", e)
